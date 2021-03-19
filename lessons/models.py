@@ -87,3 +87,16 @@ class Answer(models.Model):
   number = models.IntegerField()
   completed = models.BooleanField(default=False)
   score = models.IntegerField(default=0)
+
+
+@receiver(post_save, sender=AnswerSheet)
+def createUserAnswers(sender, instance, created, **kwargs):
+  print(sender, instance)
+  for task in instance.test.task_set.all():
+    print(task, instance.test.task_set.all())
+    Answer.objects.create(sheet=instance, content="", number=task.number)
+
+
+@receiver(post_save, sender=Answer)
+def answerR(sender, instance, **kwargs):
+  print(instance, instance.sheet, instance.sheet.child)
