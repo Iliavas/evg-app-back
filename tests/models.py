@@ -8,14 +8,33 @@ class Test(models.Model):
 
 
 class Task(models.Model):
+
+    class Meta:
+        abstract = True
+
     theory = models.TextField()
-    practise = models.TextField()
+    test = models.ForeignKey(Test, on_delete=models.CASCADE, null=True)
+    
+
+    def stringify_practise(self) : pass
+
+
+class WriteTask(Task): pass
 
 
 class AnswerSheet(models.Model):
     user = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+    test = models.ForeignKey(Test, blank=True, on_delete=models.CASCADE, null=True)
 
 
 class Answer(models.Model):
+
+    class Meta:
+        abstract = True
+
     answerSheet = models.ForeignKey(AnswerSheet, on_delete=models.CASCADE)
+    taskNumber = models.IntegerField()
+
+
+class LongWriteAnswer(Answer):
     answer = models.TextField()
