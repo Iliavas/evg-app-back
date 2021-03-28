@@ -1,12 +1,15 @@
 import graphene
 
-import tests.schema
 
-class Query( tests.schema.Query, graphene.ObjectType):
+class Query(graphene.ObjectType):
+  hello = graphene.String()
+
+
+  def resolve_hello(self, info):
+    return "hello world"
+
+class Mutation(graphene.ObjectType):
   pass
 
-class Mutation(tests.schema.Mutation, graphene.ObjectType):
-  pass
 
-
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = graphene.Schema(query=Query)
