@@ -6,7 +6,7 @@ from .djangoTypes import TestType
 
 from .models import Test
 
-from .mutations import RegisterUser
+from .mutations import RegisterUser, CreateTest
 
 class Query(graphene.ObjectType):
     
@@ -23,3 +23,4 @@ class Mutation(graphene.ObjectType):
     verify_token = graphql_jwt.Verify.Field()
     refresh_token = graphql_jwt.Refresh.Field()
     user_auth = RegisterUser.Field()
+    create_test = CreateTest.Field()
