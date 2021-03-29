@@ -2,14 +2,13 @@ import graphene
 
 
 class Query(graphene.ObjectType):
-  hello = graphene.String()
+    hello = graphene.String()
 
-
-  def resolve_hello(self, info):
-    return "hello world"
+    def resolve_hello(self, info):
+        return "hello world"
 
 class Mutation(graphene.ObjectType):
-  pass
+    pass
 
 
 schema = graphene.Schema(query=Query)

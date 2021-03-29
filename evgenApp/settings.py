@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    'Diary'
 
 ]
 GRAPHENE = {
@@ -97,15 +98,10 @@ WSGI_APPLICATION = 'evgenApp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'evgen-app-test',
-        'USER' : 'evg-app-test',
-        'PASSWORD' : 'Ilvas2006',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
