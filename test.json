@@ -1,0 +1,35 @@
+[
+    {
+      "model": "Diary.Mark",
+      "pk": 1,
+      "fields": {
+        "mark": 5,
+        "lesson": "Chemistry",
+        "descryption": "Kasha Sarpov krasavchik",
+        "date": "2019-09-25 06:00",
+        "user": 1
+      }
+    },
+    {
+      "model": "Diary.Mark",
+      "pk": 2,
+      "fields": {
+        "mark": 5,
+        "lesson": "Chemistry",
+        "descryption": "Kasha Sarpov krasavchik",
+        "date": "2019-09-25 06:00",
+        "user": 2
+      }
+    },
+    {
+      "model": "Diary.Mark",
+      "pk": 3,
+      "fields": {
+        "mark": 5,
+        "lesson": "Chemistry",
+        "descryption": "Kasha Sarpov krasavchik",
+        "date": "2019-09-25 06:00",
+        "user": 3
+      }
+    }
+  ]
