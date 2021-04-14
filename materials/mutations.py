@@ -4,6 +4,9 @@ from graphene import Mutation
 import graphene
 from graphql_relay import from_global_id
 
+from django.contrib.auth.models import User
+
+
 class CreateDoc(graphene.Mutation):
     class Arguments:
         token = graphene.String()
@@ -34,6 +37,18 @@ class UpdateDoc(graphene.Mutation):
 
         return UpdateDoc(ok=True)
 
+
+class CreateUser(graphene.Mutation):
+    class Arguments:
+        username = graphene.String()
+        password = graphene.String()
+
+    ok = graphene.Boolean()
+
+    @classmethod
+    def mutate(cls, root, info, username, password):
+        User.objects.create_user(username=username, password=password)
+        return CreateUser(ok=True)
 
 class DeleteDoc(graphene.Mutation):
     class Arguments:
