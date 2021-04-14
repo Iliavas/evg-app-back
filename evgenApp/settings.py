@@ -25,13 +25,14 @@ SECRET_KEY = '&%x4%0rf7_^)by!jrj23_e^*_ov(rv9+!=4a*rx)g)zr1^)4q='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'graphene_django',
+    'rest_framework',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gdstorage',
     'django_filters',
-    "tests"
+    "tests",
 
 ]
 GRAPHENE = {
@@ -68,6 +70,8 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
+
+DEFAULT_FILE_STORAGE = 'django_gcloud_storage.DjangoGCloudStorage'
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
@@ -158,3 +162,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = BASE_DIR + '\\client-secret.json' 
+GCS_PROJECT = "My First Project"
+GCS_BUCKET = "evgen-app-backet"
+GCS_CREDENTIALS_FILE_PATH = BASE_DIR + '\\client-secret.json' 
+
