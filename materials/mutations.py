@@ -12,12 +12,19 @@ class CreateDoc(graphene.Mutation):
     class Arguments:
         token = graphene.String()
         content = graphene.String()
+        name = graphene.String()
+        state = graphene.String()
     
     document = graphene.Field(MaterialType)
 
     @classmethod
-    def mutate(root, cls, info, token, content):
-        doc = Material.objects.create(user=info.context.user, content=content)
+    def mutate(root, cls, info, token, content, name, state):
+        doc = Material.objects.create(
+            user=info.context.user, 
+            content=content, 
+            name=name,
+            state=state
+            )
 
         return CreateDoc(document=doc)
 
@@ -25,6 +32,8 @@ class CreateDoc(graphene.Mutation):
 class UpdateDoc(graphene.Mutation):
     class Arguments:
         content = graphene.String()
+        state = graphene.String()
+        name = graphene.String()
         id = graphene.ID()
     
     ok = graphene.Boolean()
@@ -34,6 +43,8 @@ class UpdateDoc(graphene.Mutation):
         material = Material.objects.get(id=from_global_id(id)[1])
 
         material.content = content
+        material.state = state
+        material.name = name
         material.save()
 
         return UpdateDoc(ok=True)

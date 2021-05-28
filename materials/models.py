@@ -6,3 +6,5 @@ from django.contrib.auth.models import User
 class Material(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
+    name = models.TextField(blank=True)
+    state = models.TextField(blank=True)
