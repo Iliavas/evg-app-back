@@ -6,19 +6,20 @@ from graphql_relay import from_global_id
 
 from django.contrib.auth.models import User
 
+from .gqlTypes import MaterialType
 
 class CreateDoc(graphene.Mutation):
     class Arguments:
         token = graphene.String()
         content = graphene.String()
     
-    ok = graphene.Boolean()
+    document = graphene.Field(MaterialType)
 
     @classmethod
     def mutate(root, cls, info, token, content):
-        Material.objects.create(user=info.context.user, content=content)
+        doc = Material.objects.create(user=info.context.user, content=content)
 
-        return CreateDoc(ok=True)
+        return CreateDoc(document=doc)
 
 
 class UpdateDoc(graphene.Mutation):
