@@ -39,7 +39,7 @@ class UpdateDoc(graphene.Mutation):
     ok = graphene.Boolean()
 
     @classmethod
-    def mutate(root, cls, info, content, id):
+    def mutate(root, cls, info, content, id, name, state):
         material = Material.objects.get(id=from_global_id(id)[1])
 
         material.content = content
